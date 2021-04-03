@@ -5,13 +5,13 @@ import sys
 import os
 sys.path.append("/opt/anaconda3/lib/python3.7/site-packages/")
 
-from flask import Flask,render_template,url_for
+from flask import Flask,render_template,url_for,flash,redirect
 from forms import RegistrationForm,LoginForm
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = '7606759b9c410f7865f82cd85bf75465'
 
-posts = [{"author":"Pranav Sastry","title":"Hello World from out of this world! From Pranav Sastry!","content":"Crap","date":"23-12-2021","time":"23:33 IST"},
+posts = [{"author":"Pranav Sastry","title":"Hello World","content":"Crap","date":"23-12-2021","time":"23:33 IST"},
         {"author":"Pran Sastry","title":"Hello World","content":"Crap","date":"23-12-2021","time":"23:33 IST"},
         {"author":"Prani Sastry","title":"Hello World","content":"Crap","date":"23-12-2021","time":"23:33 IST"}]
 
@@ -24,12 +24,15 @@ def home():
 def about():
     return render_template('about.html',title="About")
 
-@app.route("/register")
+@app.route("/register",methods=['GET','POST'])
 def register():
     form = RegistrationForm()
+    if form.validate_on_submit():
+        flash("Account created for {}!".format(form.username.data),"success")
+        return redirect("/home")
     return render_template('register.html',title="Register",form=form)
 
-@app.route("/login")
+@app.route("/login",methods=['GET','POST'])
 def login():
     form = LoginForm()
     return render_template('login.html',title="Login",form=form)
