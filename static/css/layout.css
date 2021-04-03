@@ -50,12 +50,86 @@
   color: black;
 }
 
+.input_field{
+  height: 35px;
+  width: 400px;
+  border:none;
+  border-radius: 5px;
+  margin-top:10px;
+  margin-left: 10px;
+  font-size:20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+}
+
+.input_field_error{
+  height: 35px;
+  width: 400px;
+  border:none;
+  border-radius: 5px;
+  margin-top:10px;
+  margin-left: 10px;
+  font-size:20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+  border-color:red;
+  border-style: solid;
+}
+
+.label_field{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 20px;
+  margin-top:10px;
+}
+
+.submit_button{
+  height:40px;
+  width:100px;
+  background-color: black;
+  color:white;
+  border:none;
+  border-radius: 5px;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 35px;
+  margin-left: 380px;
+}
+
+.submit_button:hover{
+  color:black;
+  background-color: #17c704;
+}
+
+.success{
+  height:30px;
+  width:500px;
+  color:black;
+  margin-top:20px;
+  margin-left:auto;
+  margin-right:auto;
+  background-color: #2df76d;
+  border-radius:5px;
+  opacity:0.8;
+}
+
+.failure{
+  position:fixed;
+  top:0;
+  height:300px;
+  width:500px;
+  background-color: red;
+  color:white;
+}
+
 h1{
   font-family: 'Raleway', sans-serif;
   font-weight: 800;
   font-size: 35px;
   margin-left: 10px;
-  opacity:1;
 }
 
 h2{
@@ -63,7 +137,6 @@ h2{
   font-weight: 800;
   font-size: 20px;
   margin-left: 10px;
-  opacity:1;
 }
 
 h3{
@@ -71,5 +144,4 @@ h3{
   font-weight: 700;
   font-size: 20px;
   margin-left: 10px;
-  opacity:1;
 }
