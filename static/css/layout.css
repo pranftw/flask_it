@@ -1,0 +1,75 @@
+.top_bar{
+  height:50px;
+  width:101%;
+  background-color: #17c704;
+  margin-top: -8px;
+  margin-left: -8px;
+  margin-right: auto;
+  margin-bottom: auto;
+  border: none;
+}
+
+.right_bar{
+  height:500px;
+  width:300px;
+  background-color: #17c704;
+  margin-top: 80px;
+  margin-bottom:auto;
+  margin-right: 300px;
+  margin-left:auto;
+  border-radius: 5px;
+}
+
+.post{
+  height:500px;
+  width:500px;
+  background-color: #e0e0e0;
+  margin-top: 50px;
+  margin-bottom: auto;
+  margin-right: auto;
+  margin-left: 500px;
+  border-radius: 5px;
+}
+
+.post:hover{
+  background-color: #d2d5d9;
+}
+
+.more_button{
+  background-color: black;
+  height: 30px;
+  width: 50px;
+  border-radius: 5px;
+  color:white;
+  text-decoration: none;
+  border:none;
+}
+
+.more_button:hover{
+  background-color: white;
+  color: black;
+}
+
+h1{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 35px;
+  margin-left: 10px;
+  opacity:1;
+}
+
+h2{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  margin-left: 10px;
+  opacity:1;
+}
+
+h3{
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  margin-left: 10px;
+  opacity:1;
+}
