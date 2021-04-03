@@ -2,9 +2,72 @@
 
 {% block content %}
   <h1 style="margin-left:500px;">Register</h1>
-  <div class="post" style="margin-top:20px;height:700px;">
+  <div class="post" style="margin-top:20px;height:650px;">
     <form method="POST" action="">
       {{ form.hidden_tag() }}
+      <div style="height:10px;"></div>
+      <div style="margin-top:20px;">
+        {{ form.username.label(class="label_field") }}
+        <div></div>
+        {% if form.username.errors %}
+          {{ form.username(class="input_field_error") }}
+          <div style="color:#f72d52;">
+            {% for error in form.username.errors %}
+              <h3 style="font-size:15px;margin-top:5px;">{{ error }}</h3>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.username(class="input_field") }}
+        {% endif %}
+      </div>
+      <div style="margin-top:20px;">
+        {{ form.email.label(class="label_field") }}
+        <div></div>
+        {% if form.email.errors %}
+          {{ form.email(class="input_field_error") }}
+          <div style="color:#f72d52;">
+            {% for error in form.email.errors %}
+              <h3 style="font-size:15px;margin-top:5px;">{{ error }}</h3>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.email(class="input_field") }}
+        {% endif %}
+      </div>
+      <div style="margin-top:20px;">
+        {{ form.password.label(class="label_field") }}
+        <div></div>
+        {% if form.password.errors %}
+          {{ form.password(class="input_field_error") }}
+          <div style="color:#f72d52;">
+            {% for error in form.password.errors %}
+              <h3 style="font-size:15px;margin-top:5px;">{{ error }}</h3>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.password(class="input_field") }}
+        {% endif %}
+      </div>
+      <div style="margin-top:20px;">
+        {{ form.confirm_password.label(class="label_field") }}
+        <div></div>
+        {% if form.confirm_password.errors %}
+          {{ form.confirm_password(class="input_field_error") }}
+          <div style="color:#f72d52;">
+            {% for error in form.confirm_password.errors %}
+              <h3 style="font-size:15px;margin-top:5px;">{{ error }}</h3>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.confirm_password(class="input_field") }}
+        {% endif %}
+      </div>
+      <div style="margin-top:20px;">
+        {{ form.submit(class="button submit_button") }}
+      </div>
+      <div>
+        <h2 style="font-size:15px;">Already have an account? <a style="text-decoration:none;color:#17c704;" href="/login">Click here!</a></h2>
+      </div>
     </form>
   </div>
 {% endblock content%}
