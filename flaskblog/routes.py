@@ -1,18 +1,19 @@
 #Author: Pranav Sastry
-
+import os
+import secrets
+import sys
+sys.path.append("/opt/anaconda3/lib/python3.7/site-packages/")
 from flask import render_template,url_for,flash,redirect,request
 from flaskblog.models import User,Post
-from flaskblog.forms import RegistrationForm,LoginForm
+from flaskblog.forms import RegistrationForm,LoginForm,AccountForm,PostForm
 from flaskblog import app,bcrypt,db
 from flask_login import login_user,current_user,logout_user,login_required
-
-posts = [{"author":"Pranav Sastry","title":"Hello World","content":"Crap","date":"23-12-2021","time":"23:33 IST"},
-        {"author":"Pran Sastry","title":"Hello World","content":"Crap","date":"23-12-2021","time":"23:33 IST"},
-        {"author":"Prani Sastry","title":"Hello World","content":"Crap","date":"23-12-2021","time":"23:33 IST"}]
+from PIL import Image
 
 @app.route("/")
 @app.route("/home")
 def home():
+    posts = Post.query.all()
     return render_template('home.html',posts=posts)
 
 @app.route("/about")
@@ -54,7 +55,58 @@ def logout():
     logout_user()
     return redirect("/home")
 
-@app.route("/account")
+def save_picture(form_picture):
+    rndm = secrets.token_hex(2)
+    fname = current_user.username+"-"+rndm
+    _,fname_ext = os.path.splitext(form_picture.filename)
+    fname_with_ext = fname+fname_ext
+    dir_path = os.path.join(app.root_path,'static/profile_pics')
+    fname_path = os.path.join(app.root_path,'static/profile_pics',fname_with_ext)
+    fname_path_without_ext = os.path.join(app.root_path,'static/profile_pics',fname)
+    contents_of_dir = os.listdir(dir_path)
+    for content in contents_of_dir:
+        if(content.find(current_user.username)!=-1):
+            os.remove(dir_path+"/"+content)
+    size = (125,125)
+    img = Image.open(form_picture)
+    img.thumbnail(size)
+    img.save(fname_path)
+    return fname_with_ext
+
+@app.route("/account",methods=['GET','POST'])
 @login_required
 def account():
-    return render_template('account.html',title="Account")
+    form = AccountForm()
+    if form.validate_on_submit():
+        if form.image_file.data:
+            fname_with_ext = save_picture(form.image_file.data)
+            current_user.image_file = fname_with_ext
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash("Your account has been updated!","success")
+        return redirect(url_for('account'))
+    elif request.method=="GET":
+        form.username.data = current_user.username
+        form.email.data = current_user.email
+    image_file = url_for('static',filename='profile_pics/{}'.format(current_user.image_file))
+    return render_template('account.html',title="Account",image_file=image_file,form=form)
+
+@app.route("/<username>/post/new",methods=['GET','POST'])
+@login_required
+def new_post(username):
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(title=form.title.data,content=form.content.data,author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash("Post created!","success")
+        return redirect(url_for('home'))
+    return render_template("new_post.html",title="New Post",form=form)
+
+@app.route("/<username>/post/<id>")
+@login_required
+def post_page(username,id):
+    post = Post.query.filter_by(id=id).first()
+    post_div_length = ((len(post.content)/3000)+1)*900
+    return render_template("post_page.html",title="Post",post=post,post_div_length=post_div_length)
