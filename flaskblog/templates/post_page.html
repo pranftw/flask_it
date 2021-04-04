@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h1 style="margin-left:500px;">Post</h1>
+  <div class="post" style="margin-top:0px;height:{{ post_div_length }}px;width:700px;">
+    <div style="height:1px;"></div>
+    <h1 style="margin-top:5px;margin-bottom:25px;font-size:26px;">{{ post.title }}</h1>
+    <div style="margin-top:-20px;"></div>
+    <div style="text-align:center;background-color:#7e7d80;color:white;">
+      <h2 style="display:inline;margin-right:15px;font-family:'Roboto',sans-serif;font-size:15px;">{{ post.date.strftime('%d-%m-%Y') }}</h2>
+      <h2 style="display:inline;margin-right:15px;">{{ post.author.username }}</h2>
+    </div>
+    <article><h3 style="font-family:'Roboto',sans-serif;font-weight:normal;">{{ post.content | safe }}</h3></article>
+  </div>
+{% endblock content %}
