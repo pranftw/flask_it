@@ -2,11 +2,54 @@
 
 {% block content %}
   <h1 style="margin-left:500px;">Profile</h1>
-  <div class="post" style="margin-top:20px;height:420px;">
+  <div class="post" style="margin-top:20px;height:250px;">
     <img class="user_img" src="{{ image_file }}">
     <div style="text-align:center;">
       <h2 style="font-weight:700;">{{ user.username }}</h2>
       <h2 style="font-weight:600;margin-top:-15px;">{{ user.email }}</h2>
     </div>
+  </div>
+  <div style="height:50px;"></div>
+  <h1 style="margin-left:500px;display:inline;">Posts by <h1 style="color:#17c704;display:inline;">{{ user.username }}</h1></h1>
+  <div style="margin-top:-20px;"></div>
+  {% for post in posts.items %}
+    <div class="post">
+      <div style="height:1px;"></div>
+      <div>
+        <button class="button more_button" style="margin-left:435px;margin-top:460px;"><a href="/{{ post.author.username }}/post/{{ post.id }}" style="text-decoration:none;color:inherit;"><h2 style="font-size:15px;margin:auto;">More</h2></a></button>
+        <div style="margin-top:-490px;"></div>
+        <h1 style="margin-top:5px;margin-bottom:25px;font-size:26px;"><a style="text-decoration:none;color:inherit;" href="/{{ post.author.username }}/post/{{ post.id }}">{{ post.title }}</a></h1>
+        <div style="margin-top:-20px;"></div>
+        <div style="text-align:center;background-color:#7e7d80;color:white;">
+          <h2 style="display:inline;margin-right:15px;font-family:'Roboto',sans-serif;font-size:15px;">{{ post.date.strftime('%d-%m-%Y') }}</h2>
+          <h2 style="display:inline;margin-right:15px;"><a style="text-decoration:none;color:inherit;" href="{{ url_for('profile',username=post.author.username) }}">{{ post.author.username }}</a></h2>
+        </div>
+      </div>
+      {% if post.content|length >=775 %}
+        <h3 style="font-family:'Roboto',sans-serif;font-weight:normal;">{{ post.content[0:775] }}</h3>
+        <h2>Continued...</h2>
+      {% else %}
+        <pre style="white-space:pre-wrap;"><h3 style="font-family:'Roboto',sans-serif;font-weight:normal;">{{ post.content }}</h3></pre>
+      {% endif %}
+    </div>
+  {% endfor %}
+  <div style="height:50px;"></div>
+  <div style="margin-left:500px;">
+    {% for page_num in posts.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2) %}
+      {% if page_num %}
+        {% if page_num == posts.page%}
+          <a class="paginate_selected" style="text-decoration:none;" href="{{ url_for('profile',username=user.username,page=page_num )}}">{{ page_num }}</a>
+        {% else %}
+          <a class="paginate" style="text-decoration:none;" href="{{ url_for('profile',username=user.username,page=page_num )}}">{{ page_num }}</a>
+        {% endif %}
+      {% else %}
+        ...
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div style="height:20px;"></div>
+  <div>
+    <button class="button submit_button" style="width:150px;margin-left:500px;"><a style="text-decoration:none;color:inherit;" href="{{ url_for('profile',username=user.username,page=posts.prev_num) }}">Previous Page</a></button>
+    <button class="button submit_button" style="width:150px;margin-left:0px;"><a style="text-decoration:none;color:inherit;" href="{{ url_for('profile',username=user.username,page=posts.next_num) }}">Next Page</a></button>
   </div>
 {% endblock content %}
