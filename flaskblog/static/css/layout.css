@@ -196,6 +196,34 @@
   color:black;
 }
 
+.update{
+  font-family:'Raleway','sans-serif';
+  font-weight:800;
+  font-size:15px;
+  height:30px;
+  width:100px;
+  background-color: #17c704;
+  color:white;
+  margin-right:10px;
+  border-radius: 5px;
+  border:none;
+  margin-top:10px;
+}
+
+.delete{
+  font-family:'Raleway','sans-serif';
+  font-weight:800;
+  font-size:15px;
+  height:30px;
+  width:100px;
+  background-color: red;
+  color:white;
+  margin-right: 10px;
+  border-radius: 5px;
+  border:none;
+  margin-top:10px;
+}
+
 h1{
   font-family: 'Raleway', sans-serif;
   font-weight: 800;
