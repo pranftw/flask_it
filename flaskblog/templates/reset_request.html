@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h1 style="margin-left:500px;">Request Password Reset Link</h1>
+  <div class="post" style="margin-top:20px;height:250px;">
+    <form method="POST" action="">
+      {{ form.hidden_tag() }}
+      <div style="height:10px;"></div>
+      <div style="margin-top:20px;">
+        {{ form.email.label(class="label_field") }}
+        <div></div>
+        {% if form.email.errors %}
+          {{ form.email(class="input_field_error") }}
+          <div style="color:#f72d52;">
+            {% for error in form.email.errors %}
+              <h3 style="font-size:15px;margin-top:5px;">{{ error }}</h3>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.email(class="input_field") }}
+        {% endif %}
+      </div>
+      <div style="margin-top:20px;">
+        {{ form.submit(class="button submit_button") }}
+      </div>
+    </form>
+  </div>
+{% endblock content %}
