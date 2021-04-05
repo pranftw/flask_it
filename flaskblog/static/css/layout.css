@@ -211,7 +211,7 @@
 }
 
 .delete{
-  font-family:'Raleway','sans-serif';
+  font-family:'Raleway',sans-serif;
   font-weight:800;
   font-size:15px;
   height:30px;
@@ -222,6 +222,43 @@
   border-radius: 5px;
   border:none;
   margin-top:10px;
+}
+
+.paginate{
+  font-family: 'Roboto',sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  height:15px;
+  width:15px;
+  margin-top: 10px;
+  margin-left:5px;
+  margin-right:5px;
+  border-radius: 5px;
+  border:none;
+  color:white;
+  background-color: #17c704;
+  padding:10px;
+}
+
+.paginate_selected{
+  font-family: 'Roboto',sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  height:15px;
+  width:15px;
+  margin-top: 10px;
+  margin-left:5px;
+  margin-right:5px;
+  border-radius: 5px;
+  border:none;
+  color:white;
+  background-color: black;
+  padding:10px;
+}
+
+.paginate:hover{
+  color:white;
+  background-color: black;
 }
 
 h1{
