@@ -3,17 +3,21 @@ import os
 import secrets
 import sys
 sys.path.append("/opt/anaconda3/lib/python3.7/site-packages/")
-from flask import render_template,url_for,flash,redirect,request
+from flask import render_template,url_for,flash,redirect,request,abort
 from flaskblog.models import User,Post
-from flaskblog.forms import RegistrationForm,LoginForm,AccountForm,PostForm,UpdatePostForm
+from flaskblog.forms import RegistrationForm,LoginForm,AccountForm,PostForm,UpdatePostForm,RequestResetForm,PasswordResetForm
 from flaskblog import app,bcrypt,db
 from flask_login import login_user,current_user,logout_user,login_required
 from PIL import Image
+import smtplib
+from email.message import EmailMessage
+from email.mime.text import MIMEText
 
 @app.route("/")
 @app.route("/home")
 def home():
-    posts = Post.query.all()
+    page = request.args.get('page',1)
+    posts = Post.query.order_by(Post.date.desc()).paginate(per_page=5)
     return render_template('home.html',posts=posts)
 
 @app.route("/about")
@@ -23,7 +27,7 @@ def about():
 @app.route("/register",methods=['GET','POST'])
 def register():
     if(current_user.is_authenticated):
-        return redirect("\home")
+        return redirect("/home")
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
@@ -114,29 +118,101 @@ def post_page(username,id):
 @login_required
 def update_page(username,id):
     post = Post.query.filter_by(id=id).first()
-    form = UpdatePostForm()
-    if(form.validate_on_submit()):
-        post.title = form.title.data
-        post.content = form.content.data
-        db.session.commit()
-        flash("Post updated!","success")
-        return redirect(url_for('post_page',username=post.author.username,id=post.id))
-    elif(request.method=='GET'):
-        form.title.data = post.title
-        form.content.data = post.content
-    return render_template("update_page.html",title="Update",post=post,form=form)
+    if(post is not None):
+        if((post.author.username != current_user.username)):
+            abort(403)
+        elif(post.author.username!=username):
+            abort(403)
+        form = UpdatePostForm()
+        if(form.validate_on_submit()):
+            post.title = form.title.data
+            post.content = form.content.data
+            db.session.commit()
+            flash("Post updated!","success")
+            return redirect(url_for('post_page',username=post.author.username,id=post.id))
+        elif(request.method=='GET'):
+            form.title.data = post.title
+            form.content.data = post.content
+        return render_template("update_page.html",title="Update",post=post,form=form)
+    else:
+        flash("Post unavailable!")
+        return redirect(url_for('home'))
 
 @app.route("/<username>/post/delete/<id>")
 @login_required
 def delete_page(username,id):
     post = Post.query.filter_by(id=id).first()
-    db.session.delete(post)
-    db.session.commit()
-    return redirect("/home")
+    if(post is not None):
+        if((post.author.username != current_user.username)):
+            abort(403)
+        elif(post.author.username!=username):
+            abort(403)
+        db.session.delete(post)
+        db.session.commit()
+        flash("Post deleted!","success")
+        return redirect("/home")
+    else:
+        flash("Post unavailable!")
+        return redirect(url_for('home'))
 
 @app.route("/<username>")
-@login_required
 def profile(username):
     user = User.query.filter_by(username=username).first()
-    image_file = url_for('static',filename='profile_pics/{}'.format(current_user.image_file))
-    return render_template("profile.html",image_file=image_file,user=user)
+    if(user is not None):
+        image_file = url_for('static',filename='profile_pics/{}'.format(user.image_file))
+        page = request.args.get('page',1)
+        posts = Post.query.filter_by(author=user).order_by(Post.date.desc()).paginate(per_page=5)
+        return render_template("profile.html",image_file=image_file,user=user,posts=posts)
+    else:
+        image_file = url_for('static',filename='profile_pics/{}'.format('default.png'))
+        page = request.args.get('page',1)
+        posts = Post.query.filter_by(author=user).order_by(Post.date.desc()).paginate(per_page=5)
+        return render_template("profile.html",title="Profile",image_file=image_file,user=user,posts=posts)
+
+def send_email(user):
+    GMAIL_BOT_UNAME = os.getenv("GMAIL_BOT_UNAME")
+    GMAIL_BOT_PSWD = os.getenv("GMAIL_BOT_PSWD")
+    msg = EmailMessage()
+    msg['Subject'] = "Reset Password for {}".format(user.username)
+    msg['From'] = ["Blog Server"]
+    msg['To'] = ["{}".format(user.email)]
+    token = user.get_reset_token()
+    content = f'''To reset your password, visit the following link:
+{url_for('reset_password',token=token,_external=True)}
+If you didn't make this request, then kindly ignore!
+                '''
+    msg.set_content("{}".format(content))
+    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
+        smtp.login(GMAIL_BOT_UNAME,GMAIL_BOT_PSWD)
+        smtp.send_message(msg)
+        smtp.quit()
+
+
+@app.route("/reset_request",methods=['GET','POST'])
+def reset_request():
+    if(current_user.is_authenticated):
+        logout_user()
+    form = RequestResetForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        send_email(user)
+        flash("Email sent with instructions to reset password!","success")
+        return redirect(url_for('login'))
+    return render_template("reset_request.html",title="Reset Request",form=form)
+
+@app.route("/reset_password/<token>",methods=['GET','POST'])
+def reset_password(token):
+    if(current_user.is_authenticated):
+        logout_user()
+    user = User.verify_reset_token(token)
+    if user is None:
+        flash("Invalid/Expired token!")
+        return redirect(url_for('reset_request'))
+    form = PasswordResetForm()
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user.password = hashed_password
+        db.session.commit()
+        flash("Password reset for {}!".format(user.username),"success")
+        return redirect("/login")
+    return render_template("reset_password.html",title="Reset Password",form=form)
