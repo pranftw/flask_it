@@ -2,7 +2,7 @@
 {% block content %}
   <h1 style="margin-left:500px;">Home</h1>
   <div style="margin-top:-20px;"></div>
-  {% for post in posts %}
+  {% for post in posts.items %}
     <div class="post">
       <div style="height:1px;"></div>
       <div>
@@ -23,4 +23,23 @@
       {% endif %}
     </div>
   {% endfor %}
+  <div style="height:50px;"></div>
+  <div style="margin-left:500px;">
+    {% for page_num in posts.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2) %}
+      {% if page_num %}
+        {% if page_num == posts.page%}
+          <a class="paginate_selected" style="text-decoration:none;" href="{{ url_for('home',page=page_num )}}">{{ page_num }}</a>
+        {% else %}
+          <a class="paginate" style="text-decoration:none;" href="{{ url_for('home',page=page_num )}}">{{ page_num }}</a>
+        {% endif %}
+      {% else %}
+        ...
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div style="height:20px;"></div>
+  <div>
+    <button class="button submit_button" style="width:150px;margin-left:500px;"><a style="text-decoration:none;color:inherit;" href="{{ url_for('home',page=posts.prev_num) }}">Previous Page</a></button>
+    <button class="button submit_button" style="width:150px;margin-left:0px;"><a style="text-decoration:none;color:inherit;" href="{{ url_for('home',page=posts.next_num) }}">Next Page</a></button>
+  </div>
 {% endblock content %}
