@@ -66,7 +66,7 @@
         {{ form.submit(class="button submit_button") }}
       </div>
       <div>
-        <h2 style="font-size:15px;">Already have an account? <a style="text-decoration:none;color:#17c704;" href="/login">Click here!</a></h2>
+        <h2 style="font-size:15px;">Already have an account? <a style="text-decoration:none;color:#17c704;" href="{{ url_for('users.login') }}">Click here!</a></h2>
       </div>
     </form>
   </div>
