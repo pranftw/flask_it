@@ -63,7 +63,7 @@ def account():
 
 @users.route("/<username>")
 def profile(username):
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter_by(username=username).first_or_404()
     if(user is not None):
         image_file = url_for('static',filename='profile_pics/{}'.format(user.image_file))
         page = request.args.get('page',1)
