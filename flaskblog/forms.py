@@ -57,3 +57,8 @@ class PostForm(FlaskForm):
     title = StringField('Title',validators=[DataRequired(),Length(min=1,max=30)])
     content = TextAreaField('Content',validators=[DataRequired()])
     submit = SubmitField('Post')
+
+class UpdatePostForm(FlaskForm):
+    title = StringField('Title',validators=[DataRequired(),Length(min=1,max=30)])
+    content = TextAreaField('Content',validators=[DataRequired()])
+    submit = SubmitField('Update')
