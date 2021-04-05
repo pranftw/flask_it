@@ -25,6 +25,7 @@
     <h1 style="font-size:25px;margin-top:10px;"><a href="/about" style="text-decoration:none;color:white;">About</a></h1>
     {% if current_user.is_authenticated %}
       <h1 style="font-size:25px;margin-top:10px;"><a href="{{ url_for('new_post',username=current_user.username) }}" style="text-decoration:none;color:white;">New Post</a></h1>
+      <h1 style="font-size:25px;margin-top:10px;"><a href="{{ url_for('profile',username=current_user.username) }}" style="text-decoration:none;color:white;">Profile</a></h1>
       <h1 style="font-size:25px;margin-top:10px;"><a href="/account" style="text-decoration:none;color:white;">Account</a></h1>
       <h1 style="font-size:25px;margin-top:10px;"><a href="/logout" style="text-decoration:none;color:white;">Logout</a></h1>
     {% else %}
