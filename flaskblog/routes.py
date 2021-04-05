@@ -5,7 +5,7 @@ import sys
 sys.path.append("/opt/anaconda3/lib/python3.7/site-packages/")
 from flask import render_template,url_for,flash,redirect,request
 from flaskblog.models import User,Post
-from flaskblog.forms import RegistrationForm,LoginForm,AccountForm,PostForm
+from flaskblog.forms import RegistrationForm,LoginForm,AccountForm,PostForm,UpdatePostForm
 from flaskblog import app,bcrypt,db
 from flask_login import login_user,current_user,logout_user,login_required
 from PIL import Image
@@ -37,7 +37,7 @@ def register():
 @app.route("/login",methods=['GET','POST'])
 def login():
     if(current_user.is_authenticated):
-        return redirect("\home")
+        return redirect("/home")
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -105,8 +105,38 @@ def new_post(username):
     return render_template("new_post.html",title="New Post",form=form)
 
 @app.route("/<username>/post/<id>")
-@login_required
 def post_page(username,id):
     post = Post.query.filter_by(id=id).first()
     post_div_length = ((len(post.content)/3000)+1)*900
     return render_template("post_page.html",title="Post",post=post,post_div_length=post_div_length)
+
+@app.route("/<username>/post/update/<id>",methods=['GET','POST'])
+@login_required
+def update_page(username,id):
+    post = Post.query.filter_by(id=id).first()
+    form = UpdatePostForm()
+    if(form.validate_on_submit()):
+        post.title = form.title.data
+        post.content = form.content.data
+        db.session.commit()
+        flash("Post updated!","success")
+        return redirect(url_for('post_page',username=post.author.username,id=post.id))
+    elif(request.method=='GET'):
+        form.title.data = post.title
+        form.content.data = post.content
+    return render_template("update_page.html",title="Update",post=post,form=form)
+
+@app.route("/<username>/post/delete/<id>")
+@login_required
+def delete_page(username,id):
+    post = Post.query.filter_by(id=id).first()
+    db.session.delete(post)
+    db.session.commit()
+    return redirect("/home")
+
+@app.route("/<username>")
+@login_required
+def profile(username):
+    user = User.query.filter_by(username=username).first()
+    image_file = url_for('static',filename='profile_pics/{}'.format(current_user.image_file))
+    return render_template("profile.html",image_file=image_file,user=user)
