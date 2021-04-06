@@ -9,28 +9,28 @@
       <h2 style="font-weight:600;margin-top:-15px;">{{ user.email }}</h2>
     </div>
   </div>
+
   <div style="height:50px;"></div>
-  <h1 style="margin-left:500px;display:inline;">Posts by <h1 style="color:#17c704;display:inline;">{{ user.username }}</h1></h1>
+  <h1 style="margin-left:500px;display:inline;">Posts by<h1 style="color:#03989e;display:inline;">{{ user.username }}</h1></h1>
   <div style="margin-top:-20px;"></div>
   {% for post in posts.items %}
-    <div class="post">
-      <div style="height:1px;"></div>
-      <div>
-        <button class="button more_button" style="margin-left:435px;margin-top:460px;"><a href="{{ url_for('posts.post_page',username=post.author.username,id=post.id) }}" style="text-decoration:none;color:inherit;"><h2 style="font-size:15px;margin:auto;">More</h2></a></button>
-        <div style="margin-top:-490px;"></div>
-        <h1 style="margin-top:5px;margin-bottom:25px;font-size:26px;"><a style="text-decoration:none;color:inherit;" href="{{ url_for('posts.post_page',username=post.author.username,id=post.id) }}">{{ post.title }}</a></h1>
-        <div style="margin-top:-20px;"></div>
-        <div style="text-align:center;background-color:#7e7d80;color:white;">
-          <h2 style="display:inline;margin-right:15px;font-family:'Roboto',sans-serif;font-size:15px;">{{ post.date.strftime('%d-%m-%Y') }}</h2>
-          <h2 style="display:inline;margin-right:15px;"><a style="text-decoration:none;color:inherit;" href="{{ url_for('users.profile',username=post.author.username) }}">{{ post.author.username }}</a></h2>
-        </div>
+    <div class="post_card">
+      <div class="post_card_left">
+        <img class="user_img" style="margin-left:50px;margin-top:20px;" src="{{ url_for('static',filename='profile_pics/{}'.format(post.author.image_file)) }}">
+        <h2 style="margin-left:0px;text-align:center;color:white;"><a style="text-decoration:none;color:white;" href="{{ url_for('users.profile',username=post.author.username) }}">{{ post.author.username }}</a></h2>
+        <h2 style="margin-top:-10px;margin-left:0px;text-align:center;font-family:'Spartan-MB',sans-serif;font-size:15px;font-weight:600;color:white;">{{ post.date.strftime('%d-%m-%Y') }}</h2>
       </div>
-      {% if post.content|length >=775 %}
-        <h3 style="font-family:'Roboto',sans-serif;font-weight:normal;">{{ post.content[0:775] }}</h3>
-        <h2>Continued...</h2>
-      {% else %}
-        <pre style="white-space:pre-wrap;"><h3 style="font-family:'Roboto',sans-serif;font-weight:normal;">{{ post.content }}</h3></pre>
-      {% endif %}
+      <div style="margin-top:-300px;"></div>
+      <button class="button more_button" style="margin-left:740px;margin-top:260px;"><a href="{{ url_for('posts.post_page',username=post.author.username,id=post.id) }}" style="text-decoration:none;color:inherit;"><h2 style="font-size:15px;margin:auto;">More</h2></a></button>
+      <div style="margin-top:-285px;margin-left:200px;">
+        <h1 style="margin-top:0px;margin-bottom:25px;font-size:26px;"><a style="text-decoration:none;color:inherit;" href="{{ url_for('posts.post_page',username=post.author.username,id=post.id) }}">{{ post.title }}</a></h1>
+        {% if post.content|length >=410 %}
+          <pre style="white-space:pre-wrap;"><h3 style="margin-top:-25px;font-family:'Spartan-MB',sans-serif;font-weight:normal;">{{ post.content[0:410] }}</h3><pre>
+          <h2 style="margin-top:-20px;font-family:'Spartan-MB',sans-serif;font-weight:800;">Continued...</h2>
+        {% else %}
+          <pre style="white-space:pre-wrap;"><h3 style="margin-top:-25px;font-family:'Spartan-MB',sans-serif;font-weight:normal;">{{ post.content }}</h3><pre>
+        {% endif %}
+      </div>
     </div>
   {% endfor %}
   <div style="height:50px;"></div>
