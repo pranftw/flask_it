@@ -1,7 +1,70 @@
+@font-face {
+  font-family:Code-Pro;
+  src:url('/static/fonts/code-pro/Code Pro Black.otf');
+  src:url('/static/fonts/code-pro/Code Pro Black LC.otf');
+  font-weight:900;
+}
+
+@font-face {
+  font-family:Code-Pro;
+  src:url('/static/fonts/code-pro/Code Pro Bold.otf');
+  src:url('/static/fonts/code-pro/Code Pro Bold LC.otf');
+  font-weight:800;
+}
+
+@font-face {
+  font-family:Code-Pro;
+  src:url('/static/fonts/code-pro/Code Pro.otf');
+  src:url('/static/fonts/code-pro/Code Pro LC.otf');
+  font-weight:600;
+}
+
+@font-face {
+  font-family:Code-Pro;
+  src:url('/static/fonts/code-pro/Code Pro Light.otf');
+  src:url('/static/fonts/code-pro/Code Pro Light LC.otf.otf');
+  font-weight:500;
+}
+
+@font-face {
+  font-family:League-Spartan;
+  src:url('/static/fonts/league-spartan/league-spartan.bold.ttf');
+}
+
+@font-face {
+  font-family:Spartan-MB;
+  src:url('/static/fonts/spartan-mb/SpartanMB-Black.otf');
+  font-weight: 1000;
+}
+
+@font-face {
+  font-family:Spartan-MB;
+  src:url('/static/fonts/spartan-mb/SpartanMB-Extra-Bold.otf');
+  font-weight: 900;
+}
+
+@font-face {
+  font-family:Spartan-MB;
+  src:url('/static/fonts/spartan-mb/SpartanMB-Bold.otf');
+  font-weight: 800;
+}
+
+@font-face {
+  font-family:Spartan-MB;
+  src:url('/static/fonts/spartan-mb/SpartanMB-SemiBold.otf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family:Spartan-MB;
+  src:url('/static/fonts/spartan-mb/SpartanMB-Regular.otf');
+  font-weight: 600;
+}
+
 .top_bar{
   height:50px;
   width:101%;
-  background-color: #17c704;
+  background-color: #03989e;
   margin-top: -8px;
   margin-left: -8px;
   margin-right: auto;
@@ -11,13 +74,12 @@
 
 .right_bar{
   height:500px;
-  width:300px;
-  background-color: #17c704;
+  width:250px;
+  background-color: #03989e;
   margin-top: 80px;
   margin-bottom:auto;
   margin-right: 300px;
   margin-left:auto;
-  border-radius: 5px;
 }
 
 .post{
@@ -35,11 +97,31 @@
   background-color: #d2d5d9;
 }
 
+.post_card{
+  height:300px;
+  width:800px;
+  background-color: #d9d9d9;
+  margin-top: 50px;
+  margin-bottom: auto;
+  margin-right: auto;
+  margin-left: 500px;
+  position:relative;
+}
+
+.post_card_left{
+  height:300px;
+  width:200px;
+  background-color: #03989e;
+  margin-left: 0px;
+  margin-top:0px;
+  margin-right: auto;
+  position:relative;
+}
+
 .more_button{
   background-color: black;
   height: 30px;
   width: 50px;
-  border-radius: 5px;
   color:white;
   text-decoration: none;
   border:none;
@@ -262,22 +344,25 @@
 }
 
 h1{
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Code-Pro', sans-serif;
   font-weight: 800;
   font-size: 35px;
   margin-left: 10px;
+  letter-spacing:-1px;
 }
 
 h2{
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Code-Pro', sans-serif;
   font-weight: 800;
   font-size: 20px;
   margin-left: 10px;
+  letter-spacing:-1px;
 }
 
 h3{
-  font-family: 'Raleway', sans-serif;
-  font-weight: 700;
+  font-family: 'Code-Pro', sans-serif;
+  font-weight: 600;
   font-size: 20px;
   margin-left: 10px;
+  letter-spacing:-1px;
 }
