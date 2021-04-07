@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h1 style="margin-left:10px;">Account</h1>
+  <div class="post" style="margin-top:0px;height:auto;overflow:auto;">
+    <img class="user_img" src="{{ image_file }}">
+    <h2 style="text-align:center;font-weight:700;">{{ current_user.username }}</h2>
+    <h2 style="text-align:center;font-weight:600;margin-top:-15px;">{{ current_user.email }}</h2>
+    <form method="POST" action="" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+      <div style="height:10px;"></div>
+      <div style="margin-top:20px;">
+        {{ form.username.label(class="label_field") }}
+        <div></div>
+        {% if form.username.errors %}
+          {{ form.username(class="input_field_error") }}
+          <div style="color:#f72d52;">
+            {% for error in form.username.errors %}
+              <h3 style="font-size:15px;margin-top:5px;">{{ error }}</h3>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.username(class="input_field") }}
+        {% endif %}
+      </div>
+      <div style="margin-top:20px;">
+        {{ form.email.label(class="label_field") }}
+        <div></div>
+        {% if form.email.errors %}
+          {{ form.email(class="input_field_error") }}
+          <div style="color:#f72d52;">
+            {% for error in form.email.errors %}
+              <h3 style="font-size:15px;margin-top:5px;">{{ error }}</h3>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.email(class="input_field") }}
+        {% endif %}
+      </div>
+      <div style="margin-top:20px;">
+        {{ form.image_file.label(class="label_field") }}
+        {{ form.image_file(class="file_input") }}
+        <div style="color:#f72d52;">
+          {% if form.image_file.errors %}
+            {% for error in form.image_file.errors %}
+              <h3 style="font-size:15px;margin-top:5px;">{{ error }}</h3>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+      <div style="margin-top:20px;margin-bottom:5px;">
+        {{ form.submit(class="button submit_button") }}
+        <button class="button submit_button" style="background-color:#EA2E11;color:white;width:200px;margin-left:150px;margin-right:auto;"><a style="text-decoration:none;color:inherit;" href="{{ url_for('users.delete_account',username=current_user.username) }}">Delete Account</a></button>
+      </div>
+    </form>
+  </div>
+{% endblock content %}
