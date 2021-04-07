@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1 style="margin-left:500px;">Login</h1>
-  <div class="post" style="margin-top:20px;height:420px;">
+  <div class="post" style="margin-top:20px;overflow:auto;height:auto;">
     <form method="POST" action="">
       {{ form.hidden_tag() }}
       <div style="height:10px;"></div>
@@ -44,7 +44,7 @@
         {{ form.submit(class="button submit_button") }}
       </div>
       <div style="margin-top:20px;">
-        <h2 style="font-size:15px;">Forgot Password? <a style="text-decoration:none;color:#17c704;" href="{{ url_for('users.reset_request') }}">Click here!</a></h2>
+        <h2 style="font-family:'Spartan-MB',sans-serif;font-size:15px;font-weight:normal;">Forgot Password? <a style="text-decoration:none;color:#03989e;" href="{{ url_for('users.reset_request') }}"><h2 style="font-size:15px;display:inline;margin-left:2px;font-family:'Spartan-MB',sans-serif;font-weight:900;">Click here</h2></a></h2>
       </div>
     </form>
   </div>
