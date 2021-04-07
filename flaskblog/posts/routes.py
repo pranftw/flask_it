@@ -22,8 +22,7 @@ def new_post(username):
 @posts.route("/<username>/post/<id>")
 def post_page(username,id):
     post = Post.query.filter_by(id=id).first()
-    post_div_length = ((len(post.content)/3000)+1)*900
-    return render_template("post_page.html",title="Post",post=post,post_div_length=post_div_length)
+    return render_template("post_page.html",title="Post",post=post)
 
 @posts.route("/<username>/post/update/<id>",methods=['GET','POST'])
 @login_required
