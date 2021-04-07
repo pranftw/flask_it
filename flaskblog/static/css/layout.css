@@ -1,3 +1,13 @@
+@media screen and (max-width: 1060px) {
+    #primary { width:67%; }
+    #secondary { width:30%; margin-left:3%;}
+}
+
+@media screen and (max-width: 768px) {
+    #primary { width:100%; }
+    #secondary { width:100%; margin:0; border:none; }
+}
+
 @font-face {
   font-family:Code-Pro;
   src:url('/static/fonts/code-pro/Code Pro Black.otf');
@@ -79,7 +89,7 @@
   margin-top: 80px;
   margin-bottom:auto;
   margin-right: 300px;
-  margin-left:auto;
+  margin-left:1400px;
 }
 
 .post{
@@ -118,17 +128,17 @@
 }
 
 .more_button{
-  background-color: black;
-  height: 30px;
-  width: 50px;
-  color:white;
+  background-color: white;
+  height: 40px;
+  width: 80px;
+  color:black;
   text-decoration: none;
   border:none;
 }
 
 .more_button:hover{
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
 }
 
 .input_field{
