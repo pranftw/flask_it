@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="HandheldFriendly" content="true">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/layout.css') }}">
   {% if title %}
     <title>Flask Blog - {{ title }}</title>
@@ -17,7 +17,7 @@
     <h1 style="font-family:'League-Spartan',sans-serif;margin-left:510px;font-size:30px;margin-top:5px;margin-right:auto;"><a href="{{ url_for('main.home') }}" style="text-decoration:none;color:white;">pranav sastry</a></h1>
     <div style="margin-top:-50px;"></div>
     {% if current_user.is_authenticated %}
-      <h2 style="margin-left:1520px;margin-right:300px;margin-top:2px;font-size:25px;"><a href="{{ url_for('users.account') }}" style="text-decoration:none;color:white;">{{ current_user.username }}</a></h2>
+      <h2 style="margin-left:1560px;margin-right:300px;margin-top:2px;font-size:25px;"><a href="{{ url_for('users.account') }}" style="text-decoration:none;color:white;">{{ current_user.username }}</a></h2>
     {% endif %}
   </div>
   <div class="right_bar" style="text-align:center;">
