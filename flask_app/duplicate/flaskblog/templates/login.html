@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h1 style="margin-left:10px;">Login</h1>
+  <div class="post" style="margin-top:20px;overflow:auto;height:auto;">
+    <form method="POST" action="">
+      {{ form.hidden_tag() }}
+      <div style="height:10px;"></div>
+      <div style="margin-top:20px;">
+        {{ form.email.label(class="label_field") }}
+        <div></div>
+        {% if form.email.errors %}
+          {{ form.email(class="input_field_error") }}
+          <div style="color:#f72d52;">
+            {% for error in form.email.errors %}
+              <h3 style="font-size:15px;margin-top:5px;">{{ error }}</h3>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.email(class="input_field") }}
+        {% endif %}
+      </div>
+      <div style="margin-top:20px;">
+        {{ form.password.label(class="label_field") }}
+        <div></div>
+        {% if form.password.errors %}
+          {{ form.password(class="input_field_error") }}
+          <div style="color:#f72d52;">
+            {% for error in form.password.errors %}
+              <h3 style="font-size:15px;margin-top:5px;">{{ error }}</h3>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.password(class="input_field") }}
+        {% endif %}
+      </div>
+      <div style="margin-top:20px;">
+        <div>
+          {{ form.remember.label(class="label_field") }}
+          {{ form.remember(class="checkbox") }}
+        </div>
+      </div>
+      <div style="margin-top:20px;">
+        {{ form.submit(class="button submit_button") }}
+      </div>
+      <div style="margin-top:20px;">
+        <h2 style="font-family:'Spartan-MB',sans-serif;font-size:15px;font-weight:normal;">Forgot Password? <a style="text-decoration:none;color:#03989e;" href="{{ url_for('users.reset_request') }}"><h2 style="font-size:15px;display:inline;margin-left:2px;font-family:'Spartan-MB',sans-serif;font-weight:900;">Click here</h2></a></h2>
+      </div>
+    </form>
+  </div>
+{% endblock content %}
