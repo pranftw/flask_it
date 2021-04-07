@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1 style="margin-left:500px;">Request Password Reset Link</h1>
-  <div class="post" style="margin-top:20px;height:250px;">
+  <div class="post" style="margin-top:20px;height:auto;overflow:auto;">
     <form method="POST" action="">
       {{ form.hidden_tag() }}
       <div style="height:10px;"></div>
@@ -20,7 +20,7 @@
           {{ form.email(class="input_field") }}
         {% endif %}
       </div>
-      <div style="margin-top:20px;">
+      <div style="margin-top:20px;margin-bottom:5px;">
         {{ form.submit(class="button submit_button") }}
       </div>
     </form>
