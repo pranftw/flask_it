@@ -1,0 +1,351 @@
+
+@font-face {
+  font-family:Code-Pro;
+  src:url('/static/fonts/code-pro/Code Pro Black.otf');
+  src:url('/static/fonts/code-pro/Code Pro Black LC.otf');
+  font-weight:900;
+}
+
+@font-face {
+  font-family:Code-Pro;
+  src:url('/static/fonts/code-pro/Code Pro Bold.otf');
+  src:url('/static/fonts/code-pro/Code Pro Bold LC.otf');
+  font-weight:800;
+}
+
+@font-face {
+  font-family:Code-Pro;
+  src:url('/static/fonts/code-pro/Code Pro.otf');
+  src:url('/static/fonts/code-pro/Code Pro LC.otf');
+  font-weight:600;
+}
+
+@font-face {
+  font-family:Code-Pro;
+  src:url('/static/fonts/code-pro/Code Pro Light.otf');
+  src:url('/static/fonts/code-pro/Code Pro Light LC.otf.otf');
+  font-weight:500;
+}
+
+@font-face {
+  font-family:League-Spartan;
+  src:url('/static/fonts/league-spartan/league-spartan.bold.ttf');
+}
+
+@font-face {
+  font-family:Spartan-MB;
+  src:url('/static/fonts/spartan-mb/SpartanMB-Black.otf');
+  font-weight: 1000;
+}
+
+@font-face {
+  font-family:Spartan-MB;
+  src:url('/static/fonts/spartan-mb/SpartanMB-Extra-Bold.otf');
+  font-weight: 900;
+}
+
+@font-face {
+  font-family:Spartan-MB;
+  src:url('/static/fonts/spartan-mb/SpartanMB-Bold.otf');
+  font-weight: 800;
+}
+
+@font-face {
+  font-family:Spartan-MB;
+  src:url('/static/fonts/spartan-mb/SpartanMB-SemiBold.otf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family:Spartan-MB;
+  src:url('/static/fonts/spartan-mb/SpartanMB-Regular.otf');
+  font-weight: 600;
+}
+
+.top_bar{
+  height:50px;
+  width:101%;
+  background-color: #03989e;
+  margin-top: -8px;
+  margin-left: -8px;
+  margin-right: auto;
+  margin-bottom: auto;
+  border: none;
+}
+
+.right_bar{
+  height:500px;
+  width:250px;
+  background-color: #03989e;
+  margin-top: 80px;
+  margin-bottom:auto;
+  margin-right: 300px;
+  margin-left:1000px;
+}
+
+.post{
+  height:500px;
+  width:500px;
+  background-color: #e0e0e0;
+  margin-top: 50px;
+  margin-bottom: auto;
+  margin-right: auto;
+  margin-left:10px;
+}
+
+.post:hover{
+  background-color: #d2d5d9;
+}
+
+.post_card{
+  height:300px;
+  width:800px;
+  background-color: #d9d9d9;
+  margin-top: 50px;
+  margin-bottom: auto;
+  margin-right: auto;
+  margin-left:10px;
+  position:relative;
+}
+
+.post_card_left{
+  height:300px;
+  width:200px;
+  background-color: #03989e;
+  margin-left: 0px;
+  margin-top:0px;
+  margin-right: auto;
+  position:relative;
+}
+
+.more_button{
+  background-color: white;
+  height: 40px;
+  width: 80px;
+  color:black;
+  text-decoration: none;
+  border:none;
+}
+
+.more_button:hover{
+  background-color: black;
+  color: white;
+}
+
+.input_field{
+  height: 35px;
+  width: 400px;
+  border:none;
+  border-radius: 5px;
+  margin-top:10px;
+  margin-left: 10px;
+  font-size:20px;
+  font-family: 'Spartan-MB', sans-serif;
+  font-weight: normal;
+}
+
+.input_field_error{
+  height: 35px;
+  width: 400px;
+  border:none;
+  border-radius: 5px;
+  margin-top:10px;
+  margin-left: 10px;
+  font-size:20px;
+  font-family: 'Spartan-MB', sans-serif;
+  font-weight: normal;
+  border-color:red;
+  border-style: solid;
+}
+
+.text_field{
+  height: 625px;
+  width: 675px;
+  border:none;
+  border-radius: 5px;
+  margin-top:10px;
+  margin-left: 10px;
+  font-size:20px;
+  font-family: 'Spartan-MB', sans-serif;
+  font-weight: normal;
+}
+
+.text_field_error{
+  height: 625px;
+  width: 675px;
+  border:none;
+  border-radius: 5px;
+  margin-top:10px;
+  margin-left: 10px;
+  font-size:20px;
+  font-family: 'Spartan-MB', sans-serif;
+  font-weight: normal;
+  border-color:red;
+  border-style: solid;
+}
+
+.label_field{
+  font-family: 'Code-Pro', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  margin-left: 10px;
+  margin-right: 20px;
+  margin-top:10px;
+}
+
+.submit_button{
+  height:40px;
+  width:100px;
+  background-color: black;
+  color:white;
+  border:none;
+  font-family: 'Code-Pro', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  margin-top: 35px;
+  margin-left: 380px;
+}
+
+.submit_button:hover{
+  color:black;
+  background-color: white;
+}
+
+.success{
+  height:40px;
+  width:400px;
+  color:#3bb000;
+  margin-top:20px;
+  margin-left:auto;
+  margin-right:auto;
+  background-color: #d0f0c0;
+  text-align:center;
+}
+
+.failure{
+  height:40px;
+  width:400px;
+  color:#ab0000;
+  margin-top:20px;
+  margin-left:auto;
+  margin-right:auto;
+  background-color: #ff8484;
+  text-align:center;
+}
+
+.checkbox{
+  display:inline;
+  height:25px;
+  width:25px;
+  margin-left: -10px;
+}
+
+.user_img{
+  height:100px;
+  width:100px;
+  border-radius:50%;
+  margin-left:200px;
+  margin-top:20px;
+}
+
+.file_input{
+  font-family:'Spartan-MB','sans-serif';
+  font-weight:600;
+  font-size:15px;
+  margin-left:10px;
+  margin-top:5px;
+}
+
+.file_input::-webkit-file-upload-button{
+  font-family:'Spartan-MB','sans-serif';
+  font-weight:800;
+  font-size:15px;
+  height:35px;
+  width:100px;
+  margin-top:5px;
+  background-color: black;
+  color:white;
+  border:none;
+  border-radius:5px;
+}
+
+.file_input::-webkit-file-upload-button:hover{
+  background-color: white;
+  color:black;
+}
+
+.update{
+  font-family: 'Spartan-MB', sans-serif;
+  font-weight:800;
+  font-size:15px;
+  height:30px;
+  width:100px;
+  background-color: white;
+  color:black;
+  margin-right:10px;
+  border:none;
+  margin-top:10px;
+}
+
+.delete{
+  font-family: 'Spartan-MB', sans-serif;
+  font-weight:800;
+  font-size:15px;
+  height:30px;
+  width:100px;
+  background-color: black;
+  color:white;
+  margin-right: 10px;
+  border:none;
+  margin-top:10px;
+}
+
+.paginate{
+  font-family: 'Spartan-MB',sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  height:15px;
+  width:15px;
+  margin-top: 10px;
+  margin-left:5px;
+  margin-right:5px;
+  border:none;
+  color:black;
+}
+
+.paginate_selected{
+  font-family: 'Spartan-MB',sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  height:15px;
+  width:15px;
+  margin-top: 10px;
+  margin-left:5px;
+  margin-right:5px;
+  border:none;
+  color:#03989e;
+}
+
+h1{
+  font-family: 'Code-Pro', sans-serif;
+  font-weight: 800;
+  font-size: 35px;
+  margin-left: 10px;
+  letter-spacing:-1px;
+}
+
+h2{
+  font-family: 'Code-Pro', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  margin-left: 10px;
+  letter-spacing:-1px;
+}
+
+h3{
+  font-family: 'Code-Pro', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin-left: 10px;
+  letter-spacing:-1px;
+}
