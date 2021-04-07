@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/layout.css') }}">
@@ -39,12 +40,14 @@
       {% if messages %}
         {% for category,message in messages %}
           {% if category == 'success' %}
-            <div class="success" style="text-align:center;">
-              <h3 style="font-size:15px;margin:auto;">{{ message }}</h3>
+            <div class="success" style="text-align:center;overflow:auto;height:auto">
+              <div style="height:1px;"></div>
+              <h3 style="font-family:'Spartan-MB',sans-serif;font-weight:700;font-size:18px;margin-top:4px;margin-left:auto;margin-right:auto;">{{ message }}</h3>
             </div>
           {% else %}
-          <div class="failure" style="text-align:center;">
-            <h3 style="font-size:15px;margin:auto;">{{ message }}</h3>
+          <div class="failure" style="text-align:center;overflow:auto;height:auto">
+            <div style="height:1px;"></div>
+            <h3 style="font-family:'Spartan-MB',sans-serif;font-weight:700;font-size:18px;margin-top:4px;margin-left:auto;margin-right:auto;">{{ message }}</h3>
           </div>
           {% endif %}
         {% endfor %}
