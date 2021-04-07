@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1 style="margin-left:500px;">Register</h1>
-  <div class="post" style="margin-top:20px;height:650px;">
+  <div class="post" style="margin-top:20px;overflow:auto;height:auto;">
     <form method="POST" action="">
       {{ form.hidden_tag() }}
       <div style="height:10px;"></div>
@@ -66,7 +66,7 @@
         {{ form.submit(class="button submit_button") }}
       </div>
       <div>
-        <h2 style="font-size:15px;">Already have an account? <a style="text-decoration:none;color:#17c704;" href="{{ url_for('users.login') }}">Click here!</a></h2>
+        <h2 style="font-family:'Spartan-MB',sans-serif;font-size:15px;font-weight:normal;">Already have an account? <a style="text-decoration:none;color:#03989e;" href="{{ url_for('users.login') }}"><h2 style="font-size:15px;display:inline;margin-left:2px;font-family:'Spartan-MB',sans-serif;font-weight:900;">Click here</h2></a></h2>
       </div>
     </form>
   </div>
