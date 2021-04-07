@@ -90,7 +90,6 @@
   margin-bottom: auto;
   margin-right: auto;
   margin-left: 500px;
-  border-radius: 5px;
 }
 
 .post:hover{
@@ -140,7 +139,7 @@
   margin-top:10px;
   margin-left: 10px;
   font-size:20px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Spartan-MB', sans-serif;
   font-weight: normal;
 }
 
@@ -152,7 +151,7 @@
   margin-top:10px;
   margin-left: 10px;
   font-size:20px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Spartan-MB', sans-serif;
   font-weight: normal;
   border-color:red;
   border-style: solid;
@@ -166,7 +165,7 @@
   margin-top:10px;
   margin-left: 10px;
   font-size:20px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Spartan-MB', sans-serif;
   font-weight: normal;
 }
 
@@ -178,15 +177,14 @@
   margin-top:10px;
   margin-left: 10px;
   font-size:20px;
-  font-family: 'Roboto', sans-serif;
-  font-weight: normal;
+  font-family: 'Spartan-MB', sans-serif;
   font-weight: normal;
   border-color:red;
   border-style: solid;
 }
 
 .label_field{
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Code-Pro', sans-serif;
   font-weight: 800;
   font-size: 20px;
   margin-left: 10px;
@@ -200,9 +198,8 @@
   background-color: black;
   color:white;
   border:none;
-  border-radius: 5px;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 700;
+  font-family: 'Code-Pro', sans-serif;
+  font-weight: 800;
   font-size: 18px;
   margin-top: 35px;
   margin-left: 380px;
@@ -210,31 +207,29 @@
 
 .submit_button:hover{
   color:black;
-  background-color: #17c704;
+  background-color: white;
 }
 
 .success{
-  height:30px;
-  width:500px;
-  color:black;
+  height:40px;
+  width:400px;
+  color:#3bb000;
   margin-top:20px;
   margin-left:auto;
   margin-right:auto;
-  background-color: #2df76d;
-  border-radius:5px;
-  opacity:0.8;
+  background-color: #d0f0c0;
+  text-align:center;
 }
 
 .failure{
-  height:30px;
-  width:500px;
-  color:black;
+  height:40px;
+  width:400px;
+  color:#ab0000;
   margin-top:20px;
   margin-left:auto;
   margin-right:auto;
-  background-color: #f72d52;
-  border-radius:5px;
-  opacity:0.8;
+  background-color: #ff8484;
+  text-align:center;
 }
 
 .checkbox{
@@ -253,7 +248,7 @@
 }
 
 .file_input{
-  font-family:'Raleway','sans-serif';
+  font-family:'Spartan-MB','sans-serif';
   font-weight:600;
   font-size:15px;
   margin-left:10px;
@@ -261,7 +256,7 @@
 }
 
 .file_input::-webkit-file-upload-button{
-  font-family:'Raleway','sans-serif';
+  font-family:'Spartan-MB','sans-serif';
   font-weight:800;
   font-size:15px;
   height:35px;
@@ -279,68 +274,55 @@
 }
 
 .update{
-  font-family:'Raleway','sans-serif';
+  font-family: 'Spartan-MB', sans-serif;
   font-weight:800;
   font-size:15px;
   height:30px;
   width:100px;
-  background-color: #17c704;
-  color:white;
+  background-color: white;
+  color:black;
   margin-right:10px;
-  border-radius: 5px;
   border:none;
   margin-top:10px;
 }
 
 .delete{
-  font-family:'Raleway',sans-serif;
+  font-family: 'Spartan-MB', sans-serif;
   font-weight:800;
   font-size:15px;
   height:30px;
   width:100px;
-  background-color: red;
+  background-color: black;
   color:white;
   margin-right: 10px;
-  border-radius: 5px;
   border:none;
   margin-top:10px;
 }
 
 .paginate{
-  font-family: 'Roboto',sans-serif;
+  font-family: 'Spartan-MB',sans-serif;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 20px;
   height:15px;
   width:15px;
   margin-top: 10px;
   margin-left:5px;
   margin-right:5px;
-  border-radius: 5px;
   border:none;
-  color:white;
-  background-color: #17c704;
-  padding:10px;
+  color:black;
 }
 
 .paginate_selected{
-  font-family: 'Roboto',sans-serif;
+  font-family: 'Spartan-MB',sans-serif;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 20px;
   height:15px;
   width:15px;
   margin-top: 10px;
   margin-left:5px;
   margin-right:5px;
-  border-radius: 5px;
   border:none;
-  color:white;
-  background-color: black;
-  padding:10px;
-}
-
-.paginate:hover{
-  color:white;
-  background-color: black;
+  color:#03989e;
 }
 
 h1{
