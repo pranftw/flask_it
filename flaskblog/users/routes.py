@@ -1,9 +1,10 @@
-from flask import Blueprint,render_template,url_for,flash,redirect,request,abort
+from flask import Blueprint,render_template,url_for,flash,redirect,request,abort,current_app
 from flaskblog.models import User,Post
 from flaskblog.users.forms import LoginForm,RegistrationForm,AccountForm,RequestResetForm,PasswordResetForm
 from flask_login import login_user,current_user,logout_user,login_required
 from flaskblog import bcrypt,db
 from flaskblog.users.utils import save_picture,send_email
+import os
 
 users = Blueprint('users',__name__)
 
@@ -103,3 +104,26 @@ def reset_password(token):
         flash("Password reset for {}!".format(user.username),"success")
         return redirect(url_for('users.login'))
     return render_template("reset_password.html",title="Reset Password",form=form)
+
+@users.route("/delete/<username>")
+@login_required
+def delete_account(username):
+    if(current_user.username!=username):
+        abort(403)
+    user = User.query.filter_by(username=username).first()
+    posts = Post.query.filter_by(author=current_user).all();
+    if(user is not None):
+        for post in posts:
+            db.session.delete(post)
+        db.session.delete(user)
+        db.session.commit()
+        dir_path = os.path.join(current_app.root_path,'static/profile_pics')
+        contents_of_dir = os.listdir(dir_path)
+        for content in contents_of_dir:
+            if(content.find(current_user.username)!=-1):
+                os.remove(dir_path+"/"+content)
+        flash("Account Deleted!","success")
+        return redirect(url_for('main.home'))
+    else:
+        flash("Username not found!")
+        return redirect(url_for('main.home'))
