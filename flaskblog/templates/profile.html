@@ -21,7 +21,7 @@
         <h2 style="margin-top:-10px;margin-left:0px;text-align:center;font-family:'Spartan-MB',sans-serif;font-size:15px;font-weight:600;color:white;">{{ post.date.strftime('%d-%m-%Y') }}</h2>
       </div>
       <div style="margin-top:-300px;"></div>
-      <button class="button more_button" style="margin-left:740px;margin-top:260px;"><a href="{{ url_for('posts.post_page',username=post.author.username,id=post.id) }}" style="text-decoration:none;color:inherit;"><h2 style="font-size:15px;margin:auto;">More</h2></a></button>
+      <button class="button more_button" style="margin-left:710px;margin-top:250px;"><a href="{{ url_for('posts.post_page',username=post.author.username,id=post.id) }}" style="text-decoration:none;color:inherit;"><h2 style="font-family:'League-Spartan',sans-serif;font-size:20px;margin:auto;">more</h2></a></button>
       <div style="margin-top:-285px;margin-left:200px;">
         <h1 style="margin-top:0px;margin-bottom:25px;font-size:26px;"><a style="text-decoration:none;color:inherit;" href="{{ url_for('posts.post_page',username=post.author.username,id=post.id) }}">{{ post.title }}</a></h1>
         {% if post.content|length >=310 %}
