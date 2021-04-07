@@ -2,18 +2,19 @@
 
 {% block content %}
   <h1 style="margin-left:500px;">Post</h1>
-  <div class="post" style="margin-top:0px;height:{{ post_div_length }}px;width:700px;">
-    <div style="height:1px;"></div>
+  <div class="post_card" style="margin-top:0px;overflow:auto;height:auto;">
+    <div class="post_card_left" style="float:left;height:500px;">
+      <img class="user_img" style="margin-left:50px;margin-top:20px;" src="{{ url_for('static',filename='profile_pics/{}'.format(post.author.image_file)) }}">
+      <h2 style="margin-left:0px;text-align:center;color:white;"><a style="text-decoration:none;color:white;" href="{{ url_for('users.profile',username=post.author.username) }}">{{ post.author.username }}</a></h2>
+      <h2 style="margin-top:-10px;margin-left:0px;text-align:center;font-family:'Spartan-MB',sans-serif;font-size:15px;font-weight:600;color:white;">{{ post.date.strftime('%d-%m-%Y') }}</h2>
+    </div>
     {% if current_user.username == post.author.username %}
-      <button class="button update" style="margin-left:460px;"><a style="text-decoration:none;color:inherit" href="{{ url_for('posts.update_page',username=post.author.username,id=post.id) }}">Update</a></button>
+      <button class="button update" style="margin-left:375px;"><a style="text-decoration:none;color:inherit" href="{{ url_for('posts.update_page',username=post.author.username,id=post.id) }}">Update</a></button>
       <button class="button delete"><a style="text-decoration:none;color:inherit" href="{{ url_for('posts.delete_page',username=post.author.username,id=post.id) }}">Delete</a></button>
     {% endif %}
-    <h1 style="margin-top:5px;margin-bottom:25px;font-size:26px;">{{ post.title }}</h1>
-    <div style="margin-top:-20px;"></div>
-    <div style="text-align:center;background-color:#7e7d80;color:white;">
-      <h2 style="display:inline;margin-right:15px;font-family:'Roboto',sans-serif;font-size:15px;">{{ post.date.strftime('%d-%m-%Y') }}</h2>
-      <h2 style="display:inline;margin-right:15px;"><a style="text-decoration:none;color:inherit;" href="{{ url_for('users.profile',username=post.author.username) }}">{{ post.author.username }}</a></h2>
+    <div style="margin-left:200px;">
+      <h1 style="margin-top:5px;margin-bottom:25px;font-size:26px;"><a style="text-decoration:none;color:inherit;" href="{{ url_for('posts.post_page',username=post.author.username,id=post.id) }}">{{ post.title }}</a></h1>
+      <pre style="white-space:pre-wrap;"><h3 style="margin-top:-20px;font-family:'Spartan-MB',sans-serif;font-weight:normal;">{{ post.content }}</h3><pre>
     </div>
-    <pre style="white-space:pre-wrap;"><h3 style="font-family:'Roboto',sans-serif;font-weight:normal;">{{ post.content }}</h3></pre>
   </div>
 {% endblock content %}
