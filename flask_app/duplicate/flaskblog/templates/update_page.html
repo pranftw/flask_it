@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h1 style="margin-left:10px;">Update Post</h1>
+  <div class="post" style="margin-top:0px;height:900px;width:700px;">
+    <form method='POST' action="">
+      {{ form.hidden_tag() }}
+      <div style="height:10px;"></div>
+      <div style="margin-top:20px;">
+        {{ form.title.label(class="label_field") }}
+        <div></div>
+        {% if form.title.errors %}
+          {{ form.title(class="input_field_error",style="font-size:25px;width:675px;font-weight:800;font-family:'Code-Pro',sans-serif;") }}
+          <div style="color:#f72d52;">
+            {% for error in form.title.errors %}
+              <h3 style="font-size:15px;margin-top:5px;">{{ error }}</h3>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.title(class="input_field",style="font-size:25px;width:675px;font-weight:800;font-family:'Code-Pro',sans-serif;") }}
+        {% endif %}
+      </div>
+      <div style="margin-top:20px;">
+        {{ form.content.label(class="label_field") }}
+        <div></div>
+        {% if form.content.errors %}
+          {{ form.content(class="text_field_error") }}
+          <div style="color:#f72d52;">
+            {% for error in form.content.errors %}
+              <h3 style="font-size:15px;margin-top:5px;">{{ error }}</h3>
+            {% endfor %}
+          </div>
+        {% else %}
+          {{ form.content(class="text_field") }}
+        {% endif %}
+      </div>
+      <div style="margin-top:-20px;margin-left:208px;">
+        {{ form.submit(class="button submit_button") }}
+      </div>
+    </form>
+  </div>
+{% endblock content %}
