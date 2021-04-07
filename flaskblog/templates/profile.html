@@ -3,7 +3,7 @@
 {% block content %}
   <h1 style="margin-left:500px;">Profile</h1>
   <div class="post" style="margin-top:20px;height:250px;">
-    <img class="user_img" src="{{ image_file }}">
+    <img class="user_img" src="{{ image_file }}" style="margin-left:210px;">
     <div style="text-align:center;">
       <h2 style="font-weight:700;">{{ user.username }}</h2>
       <h2 style="font-weight:600;margin-top:-15px;">{{ user.email }}</h2>
@@ -24,8 +24,8 @@
       <button class="button more_button" style="margin-left:740px;margin-top:260px;"><a href="{{ url_for('posts.post_page',username=post.author.username,id=post.id) }}" style="text-decoration:none;color:inherit;"><h2 style="font-size:15px;margin:auto;">More</h2></a></button>
       <div style="margin-top:-285px;margin-left:200px;">
         <h1 style="margin-top:0px;margin-bottom:25px;font-size:26px;"><a style="text-decoration:none;color:inherit;" href="{{ url_for('posts.post_page',username=post.author.username,id=post.id) }}">{{ post.title }}</a></h1>
-        {% if post.content|length >=410 %}
-          <pre style="white-space:pre-wrap;"><h3 style="margin-top:-25px;font-family:'Spartan-MB',sans-serif;font-weight:normal;">{{ post.content[0:410] }}</h3><pre>
+        {% if post.content|length >=310 %}
+          <pre style="white-space:pre-wrap;"><h3 style="margin-top:-25px;font-family:'Spartan-MB',sans-serif;font-weight:normal;">{{ post.content[0:310] }}</h3><pre>
           <h2 style="margin-top:-20px;font-family:'Spartan-MB',sans-serif;font-weight:800;">Continued...</h2>
         {% else %}
           <pre style="white-space:pre-wrap;"><h3 style="margin-top:-25px;font-family:'Spartan-MB',sans-serif;font-weight:normal;">{{ post.content }}</h3><pre>
